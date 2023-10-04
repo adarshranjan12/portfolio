@@ -204,7 +204,7 @@
                     </div>
                 </div>
                 <div class="contact-right">
-                    <form action="get">
+                    <form onsubmit="sendEmail(); reset(); return false;">
                         <input type="text" name="name" placeholder="Your Name" required />
                         <input type="text" name="email" placeholder="Your E-mail" required />
                         <textarea name="Message" id="" cols="10" rows="6" placeholder="Your Message"></textarea>
@@ -257,6 +257,25 @@
     });
 
     
+    </script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail(){
+            Email.send({
+                Host : "smtp.elasticemail.com",
+                Username : "adarshdbg288@gmail.com",
+                Password : "Ad123456@",
+                To : 'adarshranjan785@gmail.com',
+                From : document.getElementById("email").value,
+                Subject : "New Contact Form Enquiry",
+                Body : "Name: " + document.getElementById("name").value
+                    + "<br> Email: " +document.getElementById("email").value
+                    + "<br> Message: " +document.getElementById("message").value
+            }).then(
+            message => alert(message)
+            );
+
+        }
     </script>
 </body>
 
